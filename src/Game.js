@@ -1,15 +1,19 @@
 function Game() {
-this._frames = [];
+this._frames = this.start();
 this._currentFrameNumber = 1;
 frame = new Frame();
 this._totalScoreForGame = 0;
 this._currentBowl = 1;
+};
 
-Game.prototype.start = function () {
-  for (var i =0; i < 10; i ++){
-    this._frames.push(frame);
-  }
-  return this._frames
+
+Game.prototype.start = function() {
+    array = []
+    for (var i = 0; i < 10; i++) {
+        frame = new Frame(false);
+        array.push(frame);
+    }
+    return array;
 };
 
 Game.prototype.getTotalScore = function(){
@@ -17,6 +21,7 @@ Game.prototype.getTotalScore = function(){
     this._totalScoreForGame += this._frames[i].totalScoreForFrame();
   }
   return this._totalScoreForGame;
+
 };
 
 Game.prototype.roll = function(pins_hit){
@@ -29,21 +34,34 @@ Game.prototype.roll = function(pins_hit){
     frame.thirdRoll(pins_hit)
   }
     this.updateFrameNumber();
+    // this.resetFrameScore();
   };
 
 Game.prototype.updateFrameNumber = function(){
-  if(this._currentBowl=== 1){
-    this._currentBowl = 2
-  } else if (this._currentBowl ===  2) {
-    this._currentFrameNumber+=1;
-    this._currentBowl = 1;
+
+  if(this._currentBowl== 1){
+    this._currentBowl = 2;
   } else {
+
+  // } else if (this._currentBowl ===  2) {
+  //   this._currentFrameNumber+=1;
+  //   this._currentBowl = 1;
+  //
+  // } else {
     this._currentFrameNumber+=1;
     this._currentBowl = 1;
+    // frame = this._frames[this._currentFrameNumber];
+    // this._frames[this._currentFrameNumber][0] = 0;
   }
 
+};
+
+Game.prototype.resetFrameScore = function(){
+  frame = this._frames[this._currentFrameNumber];
+  frame._pinsHitOnBowl1 = 0;
+  frame._pinsHitOnBowl1 = 0;
 };
 //
 //   } else {
 //     frame.thirdRoll(pins_hit)
-  };
+  // };
