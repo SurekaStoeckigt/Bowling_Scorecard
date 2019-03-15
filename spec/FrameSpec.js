@@ -18,4 +18,11 @@ describe('Frame', function(){
     expect(frame._pinsHitOnBowl2).toEqual(2);
   });
 
+  it('sums the total of two bowls for the frame when no bonuses are expected', function(){
+    frame.firstRoll(2);
+    frame.secondRoll(2);
+    frame.totalScoreForFrame();
+    expect(frame._frameScore).toEqual(4);
+  });
+
 });
