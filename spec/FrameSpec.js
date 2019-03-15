@@ -1,64 +1,21 @@
-'use strict';
-
 describe('Frame', function(){
-  var frame;
-  var pins_standing;
 
   beforeEach(function(){
-    frame = new Frame(pins_standing);
-    pins_standing = new Pin();
-  })
-
-  it('each frame should contain 10 pins', function(){
-    expect(frame.pins.length).toEqual(10);
-  })
-
-  it('cannot knock more than 10 pins in one frame', function(){
-    expect(function(){frame.bowl(11)}).toThrowError('You cannot knock more than 10 pins down!')
-  })
-
-  it('cannot knock less than 0 pins in one frame', function(){
-    expect(function(){frame.bowl(-1)}).toThrowError('Negative Number!')
-  })
-
-  it('should only contain two scores', function(){
-    frame.bowl(1)
-    frame.bowl(3)
-    frame.bowl(1);
-    expect(frame.score.length).toEqual(2)
-    expect(frame.score.sum()).toEqual(4)
+    frame = new Frame();
   });
 
-  it('can bowl a strike', function(){
-    frame.bowlStrike();
-    expect(frame.score.sum()).toEqual(10)
+  it('starts with a total score of 0 for each frame', function(){
+    expect(frame.totalScoreForFrame()).toEqual(0);
   });
 
-  it('should return strike when STRIKE is bolwed', function(){
-    expect(frame.bowlStrike()).toEqual('Strike!')
+  it('keeps score of first bowl for frame', function(){
+    frame.firstRoll(2);
+    expect(frame._pinsHitOnBowl1).toEqual(2);
   });
 
-  it('calculates the pins standing if no strike is bolwed', function(){
-    frame.bowl(3)
-    expect(frame.sparePins(3)).toEqual(7)
+  it('keeps score of second bowl for frame', function(){
+    frame.secondRoll(2);
+    expect(frame._pinsHitOnBowl2).toEqual(2);
   });
 
-  it('should know when a Strike is bowled', function(){
-    frame.bowlStrike();
-    expect(frame.isStrike()).toEqual(true)
-  });
-
-  it('should know when Spare is bowled', function(){
-    frame.bowl(3)
-    frame.bowl(7)
-    expect(frame.isSpare()).toEqual(true)
-    //spare is when the second roll knocks all remaining pins down
-  });
-
-  it('rolls additional bowls if strike or spare is bowled in the 10th frame', function(){
-    frame.bowl(1)
-    frame.bowl(9)
-    frame.bonusBowl(10)
-    expect(frame.score.sum()).toEqual(20)
-  });
 });
