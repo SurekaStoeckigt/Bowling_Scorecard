@@ -2,7 +2,7 @@ function Game() {
 this._frames = this.start();
 this._currentFrameNumber = 1;
 frame = new Frame();
-this._totalScoreForGame = 0;
+// this._totalScoreForGame = 0;
 this._currentBowl = 1;
 };
 
@@ -17,6 +17,7 @@ Game.prototype.start = function() {
 };
 
 Game.prototype.getTotalScore = function(){
+  this._totalScoreForGame = 0;
   for (var i = 0; i < this._frames.length; i ++) {
     this._totalScoreForGame += this._frames[i].totalScoreForFrame();
   }

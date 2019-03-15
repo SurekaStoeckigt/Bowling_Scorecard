@@ -33,6 +33,7 @@ var game;
     game.roll(1);
     game.getTotalScore();
     expect(game._currentFrameNumber).toEqual(4);
+    expect(game.getTotalScore()).toEqual(15);
     // expect(game._totalScoreForGame).toEqual(15);
   });
 });
