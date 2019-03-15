@@ -1,19 +1,16 @@
 function Game() {
-this._frames = this.start();
+
+this._frames = [];
 this._currentFrameNumber = 1;
 frame = new Frame();
-// this._totalScoreForGame = 0;
 this._currentBowl = 1;
 };
 
-
 Game.prototype.start = function() {
-    array = []
     for (var i = 0; i < 10; i++) {
-        frame = new Frame(false);
-        array.push(frame);
+        frame = new Frame();
+        this._frames.push(frame);
     }
-    return array;
 };
 
 Game.prototype.getTotalScore = function(){
@@ -35,7 +32,6 @@ Game.prototype.roll = function(pins_hit){
     frame.thirdRoll(pins_hit)
   }
     this.updateFrameNumber();
-    // this.resetFrameScore();
   };
 
 Game.prototype.updateFrameNumber = function(){
@@ -51,8 +47,7 @@ Game.prototype.updateFrameNumber = function(){
   // } else {
     this._currentFrameNumber+=1;
     this._currentBowl = 1;
-    // frame = this._frames[this._currentFrameNumber];
-    // this._frames[this._currentFrameNumber][0] = 0;
+
   }
 
 };
@@ -60,9 +55,4 @@ Game.prototype.updateFrameNumber = function(){
 Game.prototype.resetFrameScore = function(){
   frame = this._frames[this._currentFrameNumber];
   frame._pinsHitOnBowl1 = 0;
-  frame._pinsHitOnBowl1 = 0;
 };
-//
-//   } else {
-//     frame.thirdRoll(pins_hit)
-  // };
