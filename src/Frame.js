@@ -1,27 +1,34 @@
-function Frame() {
+function Frame(bonusAllowed) {
 this._frameScore = 0;
-this._pinsHitOnBowl1 = 0;
-this._pinsHitOnBowl2 = 0;
-this._bonusScoreExpected = 0;
-this._secondBowlAllowed = false;
+this._bonusAllowed = bonusAllowed; // from last frame (true of false)
+this._strike = false;
+this._done = false;
+this._first = true;
+
 
 Frame.prototype.totalScoreForFrame = function(){
-  this._frameScore = this._pinsHitOnBowl1 + this._pinsHitOnBowl2 + this._bonusScoreExpected;
-  return this._frameScore;
+  if (this._bonusAllowed === true)
+  {
+    this._frameScore = this._frameScore * 2;
+  };
+  return this._frameScore
 };
 
-Frame.prototype.firstRoll = function(pins_hit){
-  this._pinsHitOnBowl1 = pins_hit;
-  if (pins_hit < 10) {
-    this._secondBowlAllowed = true
-    } else {
-      this._secondBowlAllowed = false
-    }
+Frame.prototype.roll = function(pins_hit) {
+  if (!this._done) {
+    this._frameScore = this._frameScore + pins_hit;
+    if (this._frameScore >= 10 && this._first) {
+      this._done = true;
+      this._strike = true;
+
+    };
+    if (!this._first) {
+      this._done = true;
+    };
+    if (this._first) {
+        this._first = false;
+    };
   };
-
-
-Frame.prototype.secondRoll = function(pins_hit){
-  this._pinsHitOnBowl2 = pins_hit;
 };
 
 };
