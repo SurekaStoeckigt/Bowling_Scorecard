@@ -25,11 +25,12 @@ Game.prototype.roll = function(pins_hit){
 
   if (frame._done) {
     if (this._frames.length >= 2) {
-      var strike = this._frames[this._frames.length-2]._strike || frame._strike; //true or false
+      var strike_or_spare = this._frames[this._frames.length-2]._strike || frame._strike || frame._spare; //true or false
     } else {
-      var strike = frame._strike; // true or false
+      var strike_or_spare = frame._strike || frame._spare; // true or false
+
     }
     this._currentFrameNumber += 1;
-    this._frames.push(new Frame(strike));
+    this._frames.push(new Frame(strike_or_spare));
   };
 };

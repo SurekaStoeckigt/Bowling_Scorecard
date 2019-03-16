@@ -4,6 +4,7 @@ this._bonusAllowed = bonusAllowed; // from last frame (true of false)
 this._strike = false;
 this._done = false;
 this._first = true;
+this._spare = false;
 
 
 Frame.prototype.totalScoreForFrame = function(){
@@ -15,20 +16,30 @@ Frame.prototype.totalScoreForFrame = function(){
 };
 
 Frame.prototype.roll = function(pins_hit) {
+  // frame not complete
   if (!this._done) {
     this._frameScore = this._frameScore + pins_hit;
+    // is strike
     if (this._frameScore >= 10 && this._first) {
       this._done = true;
       this._strike = true;
-
     };
-    if (!this._first) {
-      this._done = true;
-    };
+    // frame completes on second roll second roll
+    // if (!this._first) {
+    //   this._done = true;
+    // };
+    // first roll done
     if (this._first) {
         this._first = false;
+  // frame is complete
+    } else { // frame is complete
+      this._done = true;
+      if (this._frameScore === 10) {
+        this._spare = true;
+      };
     };
   };
+
 };
 
 };
