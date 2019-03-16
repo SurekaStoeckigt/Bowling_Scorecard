@@ -24,17 +24,13 @@ Frame.prototype.roll = function(pins_hit) {
       this._done = true;
       this._strike = true;
     };
-    // frame completes on second roll second roll
-    // if (!this._first) {
-    //   this._done = true;
-    // };
     // first roll done
     if (this._first) {
         this._first = false;
   // frame is complete
     } else { // frame is complete
       this._done = true;
-      if (this._frameScore === 10) {
+      if (this._frameScore >= 10) {
         this._spare = true;
       };
     };

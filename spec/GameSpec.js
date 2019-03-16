@@ -57,4 +57,14 @@ var game;
     expect(game.getTotalScore()).toEqual(12);
   })
 
+  it('can add scores of multiple strikes and spares', function(){
+    game.roll(10);
+    game.roll(10);
+    game.roll(10);
+    game.roll(1);
+    game.roll(1);
+    expect(game._currentFrameNumber).toEqual(5);
+    expect(game.getTotalScore()).toEqual(54);
+  });
+
 });
