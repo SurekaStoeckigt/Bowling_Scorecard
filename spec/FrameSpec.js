@@ -25,4 +25,9 @@ describe('Frame', function(){
     expect(frame._frameScore).toEqual(4);
   });
 
+  it('allows a second bowl for the frame if no strike is bowled on the first roll', function(){
+    frame.firstRoll(2);
+    expect(frame._secondBowlAllowed).toEqual(true);
+  });
+
 });

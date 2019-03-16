@@ -31,26 +31,31 @@ Game.prototype.roll = function(pins_hit){
   } else {
     frame.thirdRoll(pins_hit)
   }
-    this.updateFrameNumber();
+    this.updateFrameNumber(frame);
   };
 
-Game.prototype.updateFrameNumber = function(){
+Game.prototype.updateFrameNumber = function(frame){
 
-  if(this._currentBowl== 1){
+  if((this._currentBowl=== 1) && (frame._secondBowlAllowed === true)) {
     this._currentBowl = 2;
-  } else {
+
+  // } else if ((this._currentBowl=== 2)  {
+  //   this._currentBowl = 3;
+  } else { //strike
+    this._currentFrameNumber+=1;
+    this._currentBowl = 1;
+
+    //this._currentBowl == 1 && secondBowlNotAllowed
+  } ;
 
   // } else if (this._currentBowl ===  2) {
   //   this._currentFrameNumber+=1;
   //   this._currentBowl = 1;
   //
   // } else {
-    this._currentFrameNumber+=1;
-    this._currentBowl = 1;
 
-  }
 
-};
+  };
 
 Game.prototype.resetFrameScore = function(){
   frame = this._frames[this._currentFrameNumber];

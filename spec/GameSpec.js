@@ -33,5 +33,13 @@ var game;
     game.roll(1);
     game.getTotalScore();
     expect(game._currentFrameNumber).toEqual(4);
+    expect(game._totalScoreForGame).toEqual(15);
   });
+
+  it('ends a frame if a strike is bowled on the first roll of a frame',function(){
+    game.roll(10);
+    expect(game._currentFrameNumber).toEqual(2);
+    expect(game._currentBowl).toEqual(1);
+  });
+
 });
