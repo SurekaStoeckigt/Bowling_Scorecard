@@ -3,7 +3,6 @@ var game;
 
   beforeEach(function() {
     game = new Game();
-
   });
 
 
@@ -47,14 +46,14 @@ var game;
     game.roll(1);
     game.roll(1);
     game.roll(2);
-    expect(game.getTotalScore()).toEqual(24);
+    expect(game.getTotalScore()).toEqual(21);
   })
 
   it('adds the score for the next frame if a spare is bowled', function(){
     game.roll(7);
     game.roll(3);
     game.roll(1);
-    expect(game.getTotalScore()).toEqual(12);
+    expect(game.getTotalScore()).toEqual(11);
   })
 
   it('can add scores of multiple strikes and spares', function(){
@@ -65,6 +64,19 @@ var game;
     game.roll(1);
     expect(game._currentFrameNumber).toEqual(5);
     expect(game.getTotalScore()).toEqual(54);
+  });
+
+  it('can add scores of multiple strikes and spares', function(){
+    game.roll(1);
+    game.roll(4);
+    game.roll(4);
+    game.roll(5);
+    game.roll(6);
+    game.roll(4);
+    game.roll(5);
+
+    expect(game._currentFrameNumber).toEqual(4);
+    expect(game.getTotalScore()).toEqual(29);
   });
 
 });

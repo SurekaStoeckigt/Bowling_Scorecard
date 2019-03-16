@@ -11,7 +11,7 @@ describe('Frame', function(){
 
   it('keeps score of first bowl for frame', function(){
     frame.roll(2);
-    expect(frame.totalScoreForFrame()).toEqual(2);
+    expect(frame.totalScoreForFrame()).toEqual(0);
   });
 
   it('sums the total of two bowls for the frame when no bonuses are expected', function(){
@@ -63,17 +63,6 @@ describe('Frame', function(){
   });
 
   //bonus scores
-  it('does not allow bonus scores on initialization', function(){
-    expect(frame._bonusAllowed).toEqual(false);
-  });
 
-  it('does not allow a bonus score if no strike is rolled', function(){
-    frame.roll(2);
-    expect(frame._bonusAllowed).toEqual(false);
-  });
 
-  // it('allows bonus score if a strike is rolled', function(){
-  //   frame.roll(10);
-  //   expect(frame._bonusAllowed).toEqual(true);
-  // });
 });
