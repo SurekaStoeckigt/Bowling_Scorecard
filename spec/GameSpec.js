@@ -197,4 +197,30 @@ var game;
     expect(game.getTotalScore()).toEqual(300);
   });
 
+  it('can add scores of multiple strikes and spares in a full game', function(){
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    game.roll(0);
+    expect(game._currentFrameNumber).toEqual(10);
+    expect(game.getTotalScore()).toEqual(0);
+  });
+
+
 });
