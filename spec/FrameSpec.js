@@ -37,12 +37,12 @@ describe('Frame', function(){
   });
   // bowl number
   it('starts with the first roll of the frame', function(){
-    expect(frame._first).toEqual(true);
+    expect(frame._rollNumber).toEqual(0);
   });
 
   it('can move to the second roll of the frame ', function(){
     frame.roll(2);
-    expect(frame._first).toEqual(false);
+    expect(frame._rollNumber).toEqual(1);
   });
 
   // strikes
@@ -103,6 +103,32 @@ describe('Frame', function(){
     expect(frame._frameRoll2Score).toEqual(2);
     expect(frame.totalScoreForFrame()).toEqual(3);
   });
+
+  it('calculates score correctly for strike bowled in last frame', function(){
+    final_Frame = new Frame(true);
+    final_Frame.roll(10);
+    final_Frame.roll(1);
+    final_Frame.roll(2);
+    expect(final_Frame._strike).toEqual(true);
+    expect(final_Frame.totalScoreForFrame()).toEqual(13);
+  })
+
+  it('calculates score correctly for strike bowled in last frame', function(){
+    final_Frame = new Frame(true);
+    final_Frame.roll(10);
+    final_Frame.roll(10);
+    final_Frame.roll(10);
+    expect(final_Frame._strike).toEqual(true);
+    expect(final_Frame.totalScoreForFrame()).toEqual(30);
+  })
+
+  it('calculates score correctly for spare bowled in last frame', function(){
+    final_Frame = new Frame(true);
+    final_Frame.roll(1);
+    final_Frame.roll(9);
+    final_Frame.roll(2);
+    expect(final_Frame.totalScoreForFrame()).toEqual(12);
+  })
   //bonus scores
   it('does not give bonus if no strike or spare is rolled', function(){
     frame.roll(2);
