@@ -5,7 +5,7 @@ var game;
     game = new Game();
   });
 
-
+// initialization
   it('has 10 frames on initialization', function(){
     expect(game._numberOfFrames).toEqual(10);
   });
@@ -14,7 +14,7 @@ var game;
     expect(game._currentFrameNumber).toEqual(1);
     expect(game.getTotalScore()).toEqual(0);
   });
-
+// after game starts
   it('knows which frame it is in after initialization', function(){
     game.roll(4);
     game.roll(1);
@@ -32,12 +32,35 @@ var game;
     game.roll(1);
     game.getTotalScore();
     expect(game._currentFrameNumber).toEqual(4);
-    expect(game._totalScoreForGame).toEqual(15);
   });
 
+  it('does not add frame score to total score if the frame has not ended', function(){
+    game.roll(1);
+    game.roll(1);
+    game.roll(1);
+    expect(game.getTotalScore()).toEqual(2);
+  });
+
+  it('does add frame score to total score if the frame has ended', function(){
+    game.roll(1);
+    game.roll(1);
+    game.roll(1);
+    game.roll(0);
+    expect(game.getTotalScore()).not.toEqual(2);
+    expect(game.getTotalScore()).not.toEqual(3);
+  });
+// strike
   it('ends a frame if a strike is bowled on the first roll of a frame',function(){
     game.roll(10);
     expect(game._currentFrameNumber).toEqual(2);
+  });
+// bonus for strike
+  it('does not add the bonus score for a strike if the following frame has not ended', function(){
+    game.roll(10);
+    game.roll(3);
+    game.roll(1);
+    game.roll(1);
+    expect(game.getTotalScore()).not.toEqual(21);
   });
 
   it('adds the score for the next two frames if a strike is bowled', function(){
@@ -47,16 +70,26 @@ var game;
     game.roll(1);
     game.roll(2);
     expect(game.getTotalScore()).toEqual(21);
-  })
+  });
 
-  it('adds the score for the next frame if a spare is bowled', function(){
+// bonus for spare
+  it('does not add the bonus score for a spare if the following frame has not ended', function(){
     game.roll(7);
     game.roll(3);
     game.roll(1);
     expect(game.getTotalScore()).toEqual(11);
+    expect(game.getTotalScore()).not.toEqual(12);
   })
 
-  it('can add scores of multiple strikes and spares', function(){
+  it('adds bonus score to total score if spare is bowled and the following frame has ended ', function(){
+    game.roll(7);
+    game.roll(3);
+    game.roll(1);
+    game.roll(0);
+    expect(game.getTotalScore()).toEqual(12);
+  })
+
+  it('can add bonus scores of multiple strikes', function(){
     game.roll(10);
     game.roll(10);
     game.roll(10);
