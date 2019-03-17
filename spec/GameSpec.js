@@ -5,7 +5,6 @@ var game;
     game = new Game();
   });
 
-// initialization
   it('has 10 frames on initialization', function(){
     expect(game._numberOfFrames).toEqual(10);
   });
@@ -14,7 +13,7 @@ var game;
     expect(game._currentFrameNumber).toEqual(1);
     expect(game.getTotalScore()).toEqual(0);
   });
-// after game starts
+
   it('knows which frame it is in after initialization', function(){
     game.roll(4);
     game.roll(1);
@@ -49,12 +48,12 @@ var game;
     expect(game.getTotalScore()).not.toEqual(2);
     expect(game.getTotalScore()).toEqual(3);
   });
-// strike
+
   it('ends a frame if a strike is bowled on the first roll of a frame',function(){
     game.roll(10);
     expect(game._currentFrameNumber).toEqual(2);
   });
-// bonus for strike
+
   it('does not add the bonus score for a strike if the following frame has not ended', function(){
     game.roll(10);
     game.roll(3);
@@ -72,7 +71,7 @@ var game;
     expect(game.getTotalScore()).toEqual(21);
   });
 
-// bonus for spare
+
   it('does not add the bonus score for a spare if the following frame has not ended', function(){
     game.roll(7);
     game.roll(3);
@@ -98,7 +97,7 @@ var game;
     expect(game._currentFrameNumber).toEqual(5);
     expect(game.getTotalScore()).toEqual(54);
   });
-// spare
+
   it('can add scores of multiple strikes and spares', function(){
     game.roll(1);
     game.roll(4);
@@ -110,7 +109,7 @@ var game;
     expect(game._currentFrameNumber).toEqual(4);
     expect(game.getTotalScore()).toEqual(29);
   });
-//spare and strike
+
   it('can add scores of multiple strikes and spares', function(){
     game.roll(1);
     game.roll(4);
@@ -170,7 +169,7 @@ var game;
     expect(game.getTotalScore()).toEqual(133);
   });
 
-  it('can add scores of multiple strikes and spares in a full game', function(){
+  it('returns 300 for a perfect game', function(){
     game.roll(10);
 
     game.roll(10);
@@ -197,7 +196,7 @@ var game;
     expect(game.getTotalScore()).toEqual(300);
   });
 
-  it('gutter game', function(){
+  it('returns 0 for a gutter game', function(){
     game.roll(0);
     game.roll(0);
     game.roll(0);

@@ -4,7 +4,6 @@ describe('Frame', function(){
     frame = new Frame(false);
   });
 
-// scenario : sum of scores
   it('starts with a total score of 0 for first bowl of frame', function(){
     expect(frame._frameRoll1Score).toEqual(0);
   });
@@ -35,7 +34,7 @@ describe('Frame', function(){
     expect(frame._frameRoll2Score).toEqual(2);
     expect(frame.totalScoreForFrame()).toEqual(4);
   });
-  // bowl number
+
   it('starts with the first roll of the frame', function(){
     expect(frame._rollNumber).toEqual(0);
   });
@@ -45,7 +44,6 @@ describe('Frame', function(){
     expect(frame._rollNumber).toEqual(1);
   });
 
-  // strikes
   it('knows when a strike is not bowled', function(){
     expect(frame._strike).toEqual(false);
   });
@@ -59,7 +57,7 @@ describe('Frame', function(){
     frame.roll(10);
     expect(frame._strike).toEqual(true);
   });
-// spares
+
   it('knows when a spare is not bowled', function(){
     frame.roll(1);
     frame.roll(8);
@@ -71,7 +69,7 @@ describe('Frame', function(){
     frame.roll(9);
     expect(frame._spare).toEqual(true);
   });
-//frame is finished
+
   it('allows a second bowl for the frame if no strike is bowled on the first roll', function(){
     frame.roll(2);
     expect(frame._done).toEqual(false);
@@ -129,7 +127,7 @@ describe('Frame', function(){
     final_Frame.roll(2);
     expect(final_Frame.totalScoreForFrame()).toEqual(12);
   })
-  //bonus scores
+
   it('does not give bonus if no strike or spare is rolled', function(){
     frame.roll(2);
     frame.roll(2);
@@ -146,7 +144,7 @@ describe('Frame', function(){
     expect(frame._done).toEqual(true);
     expect(frame._spare).toEqual(false);
     expect(frame._strike).toEqual(true);
-    expect(frame._bonusScore).not.toEqual(2); //yet
+    expect(frame._bonusScore).not.toEqual(2);
   });
 
 
@@ -157,7 +155,7 @@ describe('Frame', function(){
     expect(frame._done).toEqual(true);
     expect(frame._spare).toEqual(true);
     expect(frame._strike).toEqual(false);
-    expect(frame._bonusScore).not.toEqual(1); //yet
+    expect(frame._bonusScore).not.toEqual(1);
   });
 
 });

@@ -1,10 +1,9 @@
 function Game() {
   this._frames = [];
   this._currentFrameNumber = 1;
-
   this._numberOfFrames = 10;
   this._frames.push(new Frame(false))
-  // this._perfectGame = true;
+
 };
 
 

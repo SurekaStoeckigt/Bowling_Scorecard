@@ -5,7 +5,6 @@ this._frameRoll3Score = 0;
 this._bonusScore = 0;
 this._strike = false;
 this._done = false;
-// this._first = true;
 this._spare = false;
 this._finalFrame = finalFrame;
 this._rollNumber = 0;
@@ -18,19 +17,17 @@ Frame.prototype.totalScoreForFrame = function(){
 };
 
 Frame.prototype.roll = function(pins_hit) {
-  // frame not complete
   if (!this._done) {
 
-    // first roll done
     if (this._rollNumber === 0) {
         this._frameRoll1Score = pins_hit;
-        // this._first = false;
+
         if (this._frameRoll1Score >= 10) {
           this._strike = true;
            this._done = true;
          };
-    // frame is complete
-    } else if (this._rollNumber === 1) { // frame is complete
+
+    } else if (this._rollNumber === 1) {
         this._frameRoll2Score = pins_hit;
         this._done = true;
         if (this._frameRoll1Score + this._frameRoll2Score >= 10) {
