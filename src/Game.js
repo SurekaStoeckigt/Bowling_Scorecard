@@ -6,7 +6,6 @@ function Game() {
 
 };
 
-
 Game.prototype.getTotalScore = function(){
   var perfect_game = true;
   var totalScoreForGame = 0;
