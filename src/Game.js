@@ -21,12 +21,12 @@ Game.prototype.roll = function(pins_hit){
   if(!frame._done) {
     frame.roll(pins_hit)
   };
-  
+
   if (this._frames.length > 1) {
     if (this._frames[this._frames.length-2]._spare) {
         this._frames[this._frames.length-2]._bonusScore = frame._frameRoll1Score;
     }
-    if (this._frames[this._frames.length-2]._strike) {
+    if (this._frames[this._frames.length-2]._strike && frame._done) {
         this._frames[this._frames.length-2]._bonusScore = frame._frameRoll1Score + frame._frameRoll2Score;
     }
   }

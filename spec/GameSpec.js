@@ -74,7 +74,6 @@ var game;
     game.roll(6);
     game.roll(4);
     game.roll(5);
-
     expect(game._currentFrameNumber).toEqual(4);
     expect(game.getTotalScore()).toEqual(29);
   });
