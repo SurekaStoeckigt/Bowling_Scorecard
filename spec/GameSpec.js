@@ -98,7 +98,7 @@ var game;
     expect(game._currentFrameNumber).toEqual(5);
     expect(game.getTotalScore()).toEqual(54);
   });
-
+// spare
   it('can add scores of multiple strikes and spares', function(){
     game.roll(1);
     game.roll(4);
@@ -109,6 +109,44 @@ var game;
     game.roll(5);
     expect(game._currentFrameNumber).toEqual(4);
     expect(game.getTotalScore()).toEqual(29);
+  });
+//spare and strike
+  it('can add scores of multiple strikes and spares', function(){
+    game.roll(1);
+    game.roll(4);
+    game.roll(4);
+    game.roll(5);
+    game.roll(6);
+    game.roll(4);
+    game.roll(5);
+    game.roll(5);
+    game.roll(10);
+    expect(game._currentFrameNumber).toEqual(6);
+    expect(game.getTotalScore()).toEqual(59);
+  });
+
+  it('can add scores of multiple strikes and spares in a full game', function(){
+    game.roll(1);
+    game.roll(4);
+    game.roll(4);
+    game.roll(5);
+    game.roll(6);
+    game.roll(4);
+    game.roll(5);
+    game.roll(5);
+    game.roll(10);
+    game.roll(0);
+    game.roll(1);
+    game.roll(7);
+    game.roll(3);
+    game.roll(6);
+    game.roll(4);
+    game.roll(10);
+    game.roll(2);
+    game.roll(8);
+    game.roll(6);
+    expect(game._currentFrameNumber).toEqual(11);
+    expect(game.getTotalScore()).toEqual(133);
   });
 
 });
